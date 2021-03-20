@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const MongoClient = require('mongodb').MongoClient;
 const ATLAS_USERNAME = process.env.ATLAS_USERNAME;
 const ATLAS_PASSWORD = process.env.ATLAS_PASSWORD;
 
