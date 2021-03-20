@@ -16,4 +16,13 @@ const createUser = async (req, res) => {
     }
 };
 
-module.exports = { createUser };
+const login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email: email, password: password });
+        res.status(200).send(user);
+    } catch (error) {
+        res.status(401).send({ error, message: "Could not login"});
+    }
+}
+module.exports = { createUser, login };

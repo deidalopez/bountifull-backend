@@ -9,7 +9,7 @@ MongoClient.connect(`mongodb+srv://${ATLAS_USERNAME}:${ATLAS_PASSWORD}@bountiful
         if (err) {
             console.log(`Sorry, something went wrong! ${err}`);
         } else {
-            console.log("Connected to database")
+            console.log("Connected to database");
         }
     }
 )
