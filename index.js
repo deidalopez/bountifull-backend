@@ -15,4 +15,4 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
-app.listen(SERVER_PORT, () => console.log(`Server is running on port ${SERVER_PORT}!`));
+app.listen(SERVER_PORT, () => console.log(`Server is running on port http://localhost:${SERVER_PORT}`));
