@@ -95,7 +95,7 @@ const UserSchema = new Schema({
     },
     DOB: {
         type: Date,
-        required: true
+        // required: true
     },
     sex: {
         type: String,
@@ -106,9 +106,9 @@ const UserSchema = new Schema({
     achievements: {
         type: Array,
     },
-    days: {
-        savedDays: [SavedDaysSchema],
-    }
+    // days: {
+    //     savedDays: [SavedDaysSchema],
+    // }
 });
 
 
