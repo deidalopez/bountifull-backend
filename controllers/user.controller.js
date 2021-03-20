@@ -2,6 +2,7 @@ const User = require('./../models/user.model');
 
 const createUser = async (req, res) => {
     const { email, password } = req.body;
+    // TODO this await function may not work if the database is empty
     const user = await User.findOne({ email: email });
     if (user)
         return res
@@ -10,6 +11,7 @@ const createUser = async (req, res) => {
     try {
         if (password === "") throw new Error();
         const newUser = new User({ ...req.body });
+        await newUser.save();
         res.status(201).send(newUser);
     } catch (error) {
         res.status(400).send({ error, message: "Could not create user" });
@@ -22,7 +24,7 @@ const login = async (req, res) => {
         const user = await User.findOne({ email: email, password: password });
         res.status(200).send(user);
     } catch (error) {
-        res.status(401).send({ error, message: "Could not login"});
+        res.status(401).send({ error, message: "Could not login" });
     }
 }
 module.exports = { createUser, login };
