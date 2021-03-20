@@ -54,11 +54,9 @@ const NutrientsSchema = new Schema({
 const ItemsConsumedSchema = new Schema({
     itemName: {
         type: String,
-        required: true
     },
     servingQuantity: {
         type: Number,
-        required: true
     },
     nutrients: {
         nutrients: [NutrientsSchema],
@@ -68,7 +66,6 @@ const ItemsConsumedSchema = new Schema({
 const SavedDaysSchema = new Schema({
     date: {
         type: Date,
-        required: true
     },
     itemConsumed: {
         items: [ItemsConsumedSchema],
@@ -95,7 +92,6 @@ const UserSchema = new Schema({
     },
     DOB: {
         type: Date,
-        required: true
     },
     sex: {
         type: String,
