@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { findOneAndUpdate } = require('./../models/user.model');
 const User = require('./../models/user.model');
 const SECRET_KEY = process.env.SECRET_KEY;
 
@@ -42,8 +41,8 @@ const login = async (req, res) => {
 
 const profile = async (req, res) => {
     try {
-        const { _id, name } = req.user;
-        const user = { _id, name };
+        const { _id } = req.user;
+        const user = { _id };
         res.status(200).send(user);
     } catch (error) {
         res.status(500).send({ error, message: 'Could not access profile' });
@@ -61,9 +60,9 @@ const getAllUsers = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    const { email } = req.body;
+    const { _id } = req.body;
     try {
-        const deletedUser = await User.deleteOne({ email: email });
+        const deletedUser = await User.deleteOne({ _id: _id });
         res.status(200).send(deletedUser);
     } catch (error) {
         res.status(500).send({ error, message: 'Could not delete user' });
@@ -71,13 +70,24 @@ const deleteUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+    console.log(req.params.id);
     try {
-        const updatedUser = await findOneAndUpdate({ email: req.body.email }, req.body, { new: true });
+        const updatedUser = await User.updateOne({ _id: req.params.id }, req.body, { new: true });
         res.status(200).send(updatedUser);
     } catch (error) {
         res.status(500).send({ error, message: 'Could not update user' });
     }
 };
+
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById({ _id: req.params.id })
+        console.log(user);
+        res.status(200).send(user);
+    } catch (error) {
+        res.status(500).send("Could not find by id");
+    }
+}
 
 const getUserByEmail = async (req, res) => {
     const { email, password } = req.body;
@@ -85,9 +95,9 @@ const getUserByEmail = async (req, res) => {
         const user = await User.find({ email: email, password: password });
         res.status(200).send(user);
     } catch (error) {
-        res.status(500).send({ error, message: 'Could not find user by email' });
+        res.status(500).send({ error, message: "Could not find user by email" });
     }
-};
+}
 
 
-module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser };
+module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById };
