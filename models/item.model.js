@@ -69,7 +69,7 @@ const ItemSchema = new Schema({
     }
 }, 
 {
-    timestamps:{cretedAt:"createdAt"}
+    timestamps:{createdAt:"createdAt"}
 },
 );
 
