@@ -49,6 +49,9 @@ const NutrientsSchema = new Schema({
     sodium: {
         type: Number
     },
+    zinc: {
+        type: Number
+    }
 });
 
 const ItemSchema = new Schema({
