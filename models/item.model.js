@@ -1,6 +1,5 @@
 const { Schema, model } = require('.');
 
-<<<<<<< HEAD
 const NutrientsSchema = new Schema({
     protein: {
         type: Number
@@ -52,64 +51,22 @@ const NutrientsSchema = new Schema({
     },
 });
 
-const ItemsConsumedSchema = new Schema({
+const ItemSchema = new Schema({
+    user: {
+        type: String || Number // not quite sure yet
+    },
+    dateCreated: {
+        type: Date
+    },
     itemName: {
         type: String,
     },
     servingQuantity: {
         type: Number,
     },
-    // fluids: {
-    //     type: Number,
-    // },
     nutrients: {
         nutrients: [NutrientsSchema],
     }
 });
 
-const SavedDaysSchema = new Schema({
-    date: {
-        type: Date,
-    },
-    itemConsumed: {
-        items: [ItemsConsumedSchema],
-    }
-});
-
-=======
->>>>>>> d338e91e594f2d7245d4d8951717a591b00c6f61
-const UserSchema = new Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    firstName: {
-        type: String,
-    },
-    lastName: {
-        type: String,
-    },
-    avatar: {
-        type: String,
-    },
-    DOB: {
-        type: Date,
-    },
-    sex: {
-        type: String,
-    },
-    dietChoice: {
-        type: String,
-    }
-});
-
-<<<<<<< HEAD
-module.exports = model('User', UserSchema);
-=======
-module.exports = model('User', UserSchema);
-
->>>>>>> d338e91e594f2d7245d4d8951717a591b00c6f61
+module.exports = model('Item', ItemSchema);
