@@ -1,77 +1,5 @@
 const { Schema, model } = require('.');
 
-const NutrientsSchema = new Schema({
-    protein: {
-        type: Number
-    },
-    fluids: {
-        type: Number
-    },
-    fiber: {
-        type: Number
-    },
-    vitaminA: {
-        type: Number
-    },
-    thiamin: {
-        type: Number
-    },
-    riboflavin: {
-        type: Number
-    },
-    niacin: {
-        type: Number
-    },
-    vitaminB6: {
-        type: Number
-    },
-    vitaminB12: {
-        type: Number
-    },
-    folate: {
-        type: Number
-    },
-    vitaminC: {
-        type: Number
-    },
-    calcium: {
-        type: Number
-    },
-    iron: {
-        type: Number
-    },
-    magnesium: {
-        type: Number
-    },
-    potassium: {
-        type: Number
-    },
-    sodium: {
-        type: Number
-    },
-});
-
-const ItemsConsumedSchema = new Schema({
-    itemName: {
-        type: String,
-    },
-    servingQuantity: {
-        type: Number,
-    },
-    nutrients: {
-        nutrients: [NutrientsSchema],
-    }
-});
-
-const SavedDaysSchema = new Schema({
-    date: {
-        type: Date,
-    },
-    itemConsumed: {
-        items: [ItemsConsumedSchema],
-    }
-});
-
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -98,16 +26,8 @@ const UserSchema = new Schema({
     },
     dietChoice: {
         type: String,
-    },
-    achievements: {
-        type: Array,
-    },
-    days: {
-        savedDays: [SavedDaysSchema],
     }
 });
-
-
 
 module.exports = model('User', UserSchema);
 
