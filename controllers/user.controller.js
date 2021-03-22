@@ -9,14 +9,14 @@ const createUser = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (user) res.status(409).send({ error: "409", message: "User already exists " });
     try {
-        // if (req.body.password === "") throw new Error();
-        // const hash = await bcrypt.hash(req.body.password, 10);
-        // const newUser = new User({ ...req.body, password: hash });
-        // const { _id } = await newUser.save();
-        // const token = jwt.sign({ _id }, SECRET_KEY);
-        // res.status(200).send({ token });
-        const newUser = await User.create({ email: req.body.email, password: req.body.password });
-        res.status(200).send({ newUser });
+        if (req.body.password === "") throw new Error();
+        const hash = await bcrypt.hash(req.body.password, 10);
+        const newUser = new User({ ...req.body, password: hash });
+        const { _id } = await newUser.save();
+        const token = jwt.sign({ _id }, SECRET_KEY);
+        res.status(200).send({ token });
+        // const newUser = await User.create({ email: req.body.email, password: req.body.password });
+        // res.status(200).send({ newUser });
     } catch (error) {
         res.status(500).send({ error, message: `Could not create user because ${error}` });
     }
@@ -66,7 +66,6 @@ const deleteUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log(req.params.id);
     try {
         const updatedUser = await User.updateOne({ _id: req.params.id }, req.body, { new: true });
         res.status(200).send(updatedUser);
