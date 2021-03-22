@@ -50,9 +50,9 @@ const getItemsByUserAndDate = async (req, res) => {
   }
 }
 
-// delete item by user and date?
-// we can look for items belonging to this user, on a specific date, 
-// then we can ... oh wait no we can do it through the actual item _id(primarykey)
+// would go to a date, and then
+// we would pull up a date through getItemsByUserAndDate, and display items
+// then you can click on the button for the item, and use the item _id to delete it
 const deleteItemById = async (req, res) => {
   const { _id} = req.body;
   try {
@@ -63,14 +63,17 @@ const deleteItemById = async (req, res) => {
   }
 }
 
+// update serving size?
 const updateById = async (req, res) => {
-  const { _id} = req.body;
-  try {
-    const updatedItem = await NutrientsSchema.findByIdAndUpdate(_id);
-    res.status(200).send(updatedItem);
-  } catch (error) {
-    res.status(400).send({ error: 400, message: error });
-  }
+//   const { _id} = req.body;
+  // try {
+  //   const updatedItem = await NutrientsSchema.findByIdAndUpdate(_id);
+  //   res.status(200).send(updatedItem);
+  // } catch (error) {
+  //   res.status(400).send({ error: 400, message: error });
+  // }
 }
+
+
 
 module.exports = { addItem, getItemsByUserAndDate, deleteItemById, updateById }
