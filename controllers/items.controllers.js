@@ -1,39 +1,42 @@
 // const bcrypt = require('bcrypt');
 // const jwt = require('jsonwebtoken');
-const NutrientsSchema = require('./../models/nutrition.model');
+// const Item = require('./../models/nutrition.model');
+const Item = require('../models/item.model');
 // const SECRET_KEY = process.env.SECRET_KEY;
 
 // no auth implemented yet
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients } = req.body;
-  const { PROTCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
+  const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
   try {
-    const newItem = await NutrientsSchema.create({
+    console.log(itemName, user, servingQuantity, FOLDFE.quantity);
+    const newItem = await Item.create({
       itemName: itemName,
       user: user,
       servingQuantity: servingQuantity,
-      nutrients: {
-        protein: PROTCNT,
-        fiber: FIBTG,
-        vitaminA: VITA_RAE,
-        thiamin: THIA,
-        riboflavin: RIBF,
-        niacin: NIA,
-        vitaminB6: VITB6A,
-        vitaminB12: VITB12,
-        folate: FOLDFE,
-        vitaminC: VITC,
-        calcium: CA,
-        iron: FE,
-        magnesium: MG,
-        potassium: K,
-        sodium: NA,
-        zinc: ZN
+      totalNutrients: {
+        protein: PROCNT.quantity,
+        fiber: FIBTG.quantity,
+        vitaminA: VITA_RAE.quantity,
+        thiamin: THIA.quantity,
+        riboflavin: RIBF.quantity,
+        niacin: NIA.quantity,
+        vitaminB6: VITB6A.quantity,
+        vitaminB12: VITB12.quantity,
+        folate: FOLDFE.quantity,
+        vitaminC: VITC.quantity,
+        calcium: CA.quantity,
+        iron: FE.quantity,
+        magnesium: MG.quantity,
+        potassium: K.quantity,
+        sodium: NA.quantity,
+        zinc: ZN.quantity
       }
     })
-    res.send(200).send(newItem);
+    res.status(200).json(newItem);
+    console.log(newItem);
   } catch (error) {
-    res.status(500).send({ error: 500, message: error })
+    res.status(500).json({message: error })
   }
 }
 
@@ -43,7 +46,7 @@ const getItemsByUserAndDate = async (req, res) => {
   const { user, dateCreated } = req.body;
   try {
     // confirm that this returns an array of items for that date and user
-    const foundItems = await NutrientsSchema.find({ user: user, dateCreated: dateCreated }).exec();
+    const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
@@ -56,7 +59,7 @@ const getItemsByUserAndDate = async (req, res) => {
 const deleteItemById = async (req, res) => {
   const { _id} = req.body;
   try {
-    const deletedItem = await NutrientsSchema.findByIdAndRemove(_id);
+    const deletedItem = await Item.findByIdAndRemove(_id);
     res.status(200).send(deletedItem);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
@@ -64,7 +67,7 @@ const deleteItemById = async (req, res) => {
 }
 
 // update serving size?
-const updateById = async (req, res) => {
+// const updateById = async (req, res) => {
 //   const { _id} = req.body;
   // try {
   //   const updatedItem = await NutrientsSchema.findByIdAndUpdate(_id);
@@ -72,8 +75,8 @@ const updateById = async (req, res) => {
   // } catch (error) {
   //   res.status(400).send({ error: 400, message: error });
   // }
-}
+// }
 
 
 
-module.exports = { addItem, getItemsByUserAndDate, deleteItemById, updateById }
+module.exports = { addItem, getItemsByUserAndDate, deleteItemById }

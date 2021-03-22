@@ -4,9 +4,9 @@ const NutrientsSchema = new Schema({
     protein: {
         type: Number
     },
-    fluids: {
-        type: Number
-    },
+    // fluids: {
+    //     type: Number
+    // },
     fiber: {
         type: Number
     },
@@ -49,6 +49,9 @@ const NutrientsSchema = new Schema({
     sodium: {
         type: Number
     },
+    zinc: {
+        type: Number
+    }
 });
 
 const ItemSchema = new Schema({
@@ -64,8 +67,8 @@ const ItemSchema = new Schema({
     servingQuantity: {
         type: Number,
     },
-    nutrients: {
-        nutrients: [NutrientsSchema],
+    totalNutrients: {
+        type: NutrientsSchema
     }
 });
 
