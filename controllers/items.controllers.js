@@ -42,10 +42,10 @@ const addItem = async (req, res) => {
 // no auth implemented yet
 // return an array of items for that specific date, and filter in frontend
 const getItemsByUserAndDate = async (req, res) => {
-  const { user, dateCreated } = req.body;
+  const { user, createdAt } = req.body;
   try {
     // confirm that this returns an array of items for that date and user
-    const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+    const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });

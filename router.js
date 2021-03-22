@@ -3,20 +3,19 @@ const authMiddleware = require('./middlewares/authUser');
 const userController = require('./controllers/user.controller');
 const itemsController = require('./controllers/items.controllers');
 
-// Users
 router.post('/register', userController.createUser);
 router.post('/login', userController.login);
-router.get('/user/:id', userController.getUserById);
 router.get('/profile', authMiddleware, userController.profile);
+router.delete('/deleteUser', authMiddleware, userController.deleteUser);
+router.put('/update/:id', authMiddleware, userController.updateUser);
+
+router.get('/user/:id', userController.getUserById);
 router.get('/getUserByEmail', userController.getUserByEmail);
 router.get('/getAllUsers', userController.getAllUsers);
-router.delete('/deleteUser', userController.deleteUser);
-router.put('/update/:id', userController.updateUser);
 
-// Items
-router.post('/addItem', itemsController.addItem);
-router.get('/getItems', itemsController.getItemsByUserAndDate);
-router.delete('/deleteItem', itemsController.deleteItemById);
-router.put('/updateItem', itemsController.updateById);
+router.post('/addItem', authMiddleware, itemsController.addItem);
+router.get('/getItems', authMiddleware, itemsController.getItemsByUserAndDate);
+router.delete('/deleteItem', authMiddleware, itemsController.deleteItemById);
+router.put('/updateItem', authMiddleware, itemsController.updateById);
 
 module.exports = router;
