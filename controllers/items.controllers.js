@@ -1,7 +1,4 @@
-// const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
 const Item = require('../models/item.model');
-// const SECRET_KEY = process.env.SECRET_KEY;
 
 // no auth implemented yet
 const addItem = async (req, res) => {
@@ -39,7 +36,6 @@ const addItem = async (req, res) => {
   }
 };
 
-// no auth implemented yet
 // return an array of items for that specific date, and filter in frontend
 const getItemsByUserAndDate = async (req, res) => {
   const { user, createdAt } = req.body;
@@ -52,7 +48,6 @@ const getItemsByUserAndDate = async (req, res) => {
   }
 };
 
-// would go to a date, and then
 // we would pull up a date through getItemsByUserAndDate, and display items
 // then you can click on the button for the item, and use the item _id to delete it
 const deleteItemById = async (req, res) => {
