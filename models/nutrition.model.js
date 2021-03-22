@@ -56,4 +56,3 @@ const NutrientsSchema = new Schema({
 
 
 module.exports = model('User', NutrientsSchema);
-

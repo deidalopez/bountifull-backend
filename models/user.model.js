@@ -58,6 +58,9 @@ const ItemsConsumedSchema = new Schema({
     servingQuantity: {
         type: Number,
     },
+    // fluids: {
+    //     type: Number,
+    // },
     nutrients: {
         nutrients: [NutrientsSchema],
     }
@@ -102,12 +105,9 @@ const UserSchema = new Schema({
     achievements: {
         type: Array,
     },
-    // days: {
-    //     savedDays: [SavedDaysSchema],
-    // }
+    days: {
+        savedDays: [SavedDaysSchema],
+    }
 });
 
-
-
 module.exports = model('User', UserSchema);
-

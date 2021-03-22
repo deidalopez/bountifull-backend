@@ -52,10 +52,6 @@
       "quantity": 700,
       "units": "mg"
     },
-    "iodine": {
-      "quantity": 140,
-      "units": "ug"
-    },
     "iron": {
       "quantity": 8.7,
       "units": "mg"
@@ -128,10 +124,6 @@
     "calcium": {
       "quantity": 700,
       "units": "mg"
-    },
-    "iodine": {
-      "quantity": 140,
-      "units": "ug"
     },
     "iron": {
       "quantity": 8.7,
@@ -206,10 +198,6 @@
       "quantity": 700,
       "units": "mg"
     },
-    "iodine": {
-      "quantity": 140,
-      "units": "ug"
-    },
     "iron": {
       "quantity": 14.8,
       "units": "mg"
@@ -282,10 +270,6 @@
     "calcium": {
       "quantity": 700,
       "units": "mg"
-    },
-    "iodine": {
-      "quantity": 140,
-      "units": "ug"
     },
     "iron": {
       "quantity": 8.7,
