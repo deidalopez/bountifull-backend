@@ -8,6 +8,24 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
+    avatar: {
+        type: String,
+    },
+    DOB: {
+        type: Date,
+    },
+    sex: {
+        type: String,
+    },
+    dietChoice: {
+        type: String,
     }
 });
 
