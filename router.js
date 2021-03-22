@@ -16,5 +16,6 @@ router.put('/update/:id', userController.updateUser);
 router.post('/addItem', itemsController.addItem);
 router.get('/getItems', itemsController.getItemsByUserAndDate);
 router.delete('/deleteItem', itemsController.deleteItemById);
+router.put('/updateItem', itemsController.updateById);
 
 module.exports = router;

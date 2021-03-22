@@ -1,6 +1,5 @@
 // const bcrypt = require('bcrypt');
 // const jwt = require('jsonwebtoken');
-// const Item = require('./../models/nutrition.model');
 const Item = require('../models/item.model');
 // const SECRET_KEY = process.env.SECRET_KEY;
 
@@ -33,7 +32,7 @@ const addItem = async (req, res) => {
         zinc: ZN.quantity
       }
     })
-    res.status(200).json(newItem);
+    res.status(200).send(newItem);
     console.log(newItem);
   } catch (error) {
     res.status(500).json({message: error })
@@ -66,17 +65,16 @@ const deleteItemById = async (req, res) => {
   }
 }
 
-// update serving size?
-// const updateById = async (req, res) => {
-//   const { _id} = req.body;
-  // try {
-  //   const updatedItem = await NutrientsSchema.findByIdAndUpdate(_id);
-  //   res.status(200).send(updatedItem);
-  // } catch (error) {
-  //   res.status(400).send({ error: 400, message: error });
-  // }
-// }
+// update serving size
+const updateById = async (req, res) => {
+  const { _id, servingQuantity} = req.body;
 
+  try {
+    const updatedItem = await Item.findOneAndUpdate({ _id: _id }, { servingQuantity: servingQuantity }, { new: true });
+    res.status(200).send(updatedItem);
+  } catch (error) {
+    res.status(400).send({ error: 400, message: error });
+  }
+}
 
-
-module.exports = { addItem, getItemsByUserAndDate, deleteItemById }
+module.exports = { addItem, getItemsByUserAndDate, deleteItemById, updateById }
