@@ -10,5 +10,6 @@ router.get('/profile', authMiddleware, userController.profile);
 
 router.post('/addItem', itemsController.addItem);
 router.get('/getItems', itemsController.getItemsByUserAndDate);
+router.delete('/deleteItem', itemsController.deleteItemById);
 
 module.exports = router;

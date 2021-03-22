@@ -58,9 +58,6 @@ const ItemSchema = new Schema({
     user: {
         type: String || Number // not quite sure yet
     },
-    dateCreated: {
-        type: Date
-    },
     itemName: {
         type: String,
     },
@@ -70,6 +67,10 @@ const ItemSchema = new Schema({
     totalNutrients: {
         type: NutrientsSchema
     }
-});
+}, 
+{
+    timestamps:{cretedAt:"createdAt"}
+},
+);
 
 module.exports = model('Item', ItemSchema);
