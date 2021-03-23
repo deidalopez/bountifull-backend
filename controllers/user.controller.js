@@ -14,7 +14,7 @@ const createUser = async (req, res) => {
         const newUser = new User({ ...req.body, password: hash });
         const { _id } = await newUser.save();
         const token = jwt.sign({ _id }, SECRET_KEY);
-        res.status(200).send({ token });
+        res.status(200).send({ user: newUser, token, currentProgress: null});
         // const newUser = await User.create({ email: req.body.email, password: req.body.password });
         // res.status(200).send({ newUser });
     } catch (error) {
