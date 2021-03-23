@@ -4,6 +4,7 @@ const User = require('./../models/user.model');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const createUser = async (req, res) => {
+    console.log(req.email)
     if ((req.body.email) && (req.body.email).length < 1) res.status(400).send({ error, message: 'Please enter email' });
     if ((req.body.password).length < 6) res.status(400).send({ error, message: 'Password must be at least 6 characters' });
     const user = await User.findOne({ email: req.body.email });
