@@ -6,18 +6,15 @@ const moment = require('moment')
 // no auth implemented yet
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients } = req.body;
-  const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients;
-  const dateToday = new Date();
-  const formatDate = moment(dateToday).format("DD-MM-YYYY");
-  console.log(formatDate)
-  
+  const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
+  const dateToday = new Date().toISOString().substring(0, 10);
   try {
     console.log(itemName, user, servingQuantity, FOLDFE.quantity);
     const newItem = await Item.create({
       itemName: itemName,
       user: user,
       servingQuantity: servingQuantity,
-      dateCreated: formatDate,
+      dateCreated: dateToday,
       totalNutrients: {
         protein: PROCNT.quantity,
         fiber: FIBTG.quantity,
@@ -47,14 +44,10 @@ const addItem = async (req, res) => {
 
 // return an array of items for that specific date, and filter in frontend
 const getItemsByUserAndDate = async (req, res) => {
-  // console.log(req.body)
-  // const { user, createdAt } = req.body;
-  const { user, dateCreated } = req.body;
-
+  const { user, createdAt } = req.body;
   try {
     // confirm that this returns an array of items for that date and user
-    // const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
-    const foundItems = await Item.find({ user: user, createdAt: {"$gte":dateCreated, "$lt":new Date(dateCreated)} }).exec();
+    const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
