@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Item = require('../models/item.model');
 const User = require('./../models/user.model');
+const { getItemsByUserAndDate } = require('./items.controllers');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const createUser = async (req, res) => {
@@ -23,13 +25,15 @@ const createUser = async (req, res) => {
 };
 
 const login = async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) res.status(400).send({ error, message: "User not found" });
+    const today = new Date().toISOString().substring(0, 10);
+    const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
     try {
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) res.status(400).send({ error, message: "User not found" });
         const validatePass = await bcrypt.compare(req.body.password, user.password);
         if (!validatePass) res.status(400).send({ error, message: "Incorrect username and/or password" });
         const token = jwt.sign({ _id: user._id }, SECRET_KEY);
-        res.status(200).send({ token });
+        res.status(200).send({ user: user, token, currentProgress: allItems });
     } catch (error) {
         res.status(500).send({ error, message: "Could not login" });
     }
