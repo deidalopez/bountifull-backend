@@ -9,16 +9,13 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    firstName: {
-        type: String,
-    },
-    lastName: {
+    name: {
         type: String,
     },
     avatar: {
         type: String,
     },
-    DOB: {
+    birthdate: {
         type: Date,
     },
     sex: {
