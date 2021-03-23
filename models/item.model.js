@@ -63,7 +63,7 @@ const ItemSchema = new Schema({
     },
     servingQuantity: {
         type: Number,
-    },    
+    },
     dateCreated: {
         type: Date
     },
@@ -75,9 +75,6 @@ const ItemSchema = new Schema({
     },
 
 },
-    {
-        timestamps: { createdAt: 'createdAt' }
-    },
 );
 
 module.exports = model('Item', ItemSchema);
