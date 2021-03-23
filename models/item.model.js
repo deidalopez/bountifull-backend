@@ -64,6 +64,9 @@ const ItemSchema = new Schema({
     servingQuantity: {
         type: Number,
     },
+    dateCreated: {
+        type: Date,
+    },
     totalNutrients: {
         type: NutrientsSchema
     }

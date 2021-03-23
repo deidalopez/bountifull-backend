@@ -7,12 +7,14 @@ const Item = require('../models/item.model');
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients } = req.body;
   const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
+  const dateToday = new Date().toISOString().substring(0, 10);
   try {
     console.log(itemName, user, servingQuantity, FOLDFE.quantity);
     const newItem = await Item.create({
       itemName: itemName,
       user: user,
       servingQuantity: servingQuantity,
+      dateCreated: dateToday,
       totalNutrients: {
         protein: PROCNT.quantity,
         fiber: FIBTG.quantity,
@@ -42,10 +44,10 @@ const addItem = async (req, res) => {
 // no auth implemented yet
 // return an array of items for that specific date, and filter in frontend
 const getItemsByUserAndDate = async (req, res) => {
-  const { user, dateCreated } = req.body;
+  const { user, createdAt } = req.body;
   try {
     // confirm that this returns an array of items for that date and user
-    const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+    const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
