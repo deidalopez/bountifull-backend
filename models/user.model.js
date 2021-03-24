@@ -24,7 +24,10 @@ const UserSchema = new Schema({
     dietChoice: {
         type: String,
     }
-});
+},
+{
+    timestamps: { createdAt: 'createdAt' }
+}
+);
 
 module.exports = model('User', UserSchema);
-
