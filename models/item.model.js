@@ -73,7 +73,6 @@ const ItemSchema = new Schema({
     totalNutrients: {
         type: NutrientsSchema
     },
-
 },
 );
 
