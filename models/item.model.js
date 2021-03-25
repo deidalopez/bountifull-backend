@@ -55,6 +55,9 @@ const NutrientsSchema = new Schema({
 });
 
 const ItemSchema = new Schema({
+    uniqueId: {
+        type: String
+    },
     user: {
         type: String || Number // not quite sure yet
     },
