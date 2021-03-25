@@ -5,16 +5,21 @@ const moment = require('moment')
 
 // no auth implemented yet
 const addItem = async (req, res) => {
-  const { itemName, user, servingQuantity, totalNutrients } = req.body;
-  const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
+  const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
+  // const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
   const dateToday = new Date().toISOString().substring(0, 10);
   try {
-    console.log(itemName, user, servingQuantity, FOLDFE.quantity);
+    console.log(itemName, user, servingQuantity, totalNutrients);
     const newItem = await Item.create({
+      uniqueId: uniqueId,
       itemName: itemName,
       user: user,
       servingQuantity: servingQuantity,
       dateCreated: dateToday,
+<<<<<<< HEAD
+      totalNutrients: totalNutrients
+    })
+=======
       totalNutrients: {
         protein: PROCNT.quantity,
         fiber: FIBTG.quantity,
@@ -35,6 +40,7 @@ const addItem = async (req, res) => {
       }
     });
 
+>>>>>>> e5843b8f962756bc0d4f937ca6ef534f32f56e48
     res.status(200).send(newItem);
     console.log(newItem);
   } catch (error) {

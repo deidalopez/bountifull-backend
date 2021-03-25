@@ -67,12 +67,15 @@ const ItemSchema = new Schema({
     dateCreated: {
         type: Date
     },
-    dateCreated: {
-        type: Date,
-    },
     totalNutrients: {
         type: NutrientsSchema
     },
+    uniqueId: {
+        type: String
+    },
+}, 
+{
+    timestamps:{createdAt:'createdAt'}
 },
 );
 
