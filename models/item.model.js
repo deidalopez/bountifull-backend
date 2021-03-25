@@ -65,7 +65,7 @@ const ItemSchema = new Schema({
         type: Number,
     },
     dateCreated: {
-        type: Date,
+        type: Date
     },
     totalNutrients: {
         type: NutrientsSchema
@@ -75,7 +75,7 @@ const ItemSchema = new Schema({
     },
 }, 
 {
-    timestamps:{createdAt:"createdAt"}
+    timestamps:{createdAt:'createdAt'}
 },
 );
 
