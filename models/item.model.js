@@ -73,13 +73,10 @@ const ItemSchema = new Schema({
     totalNutrients: {
         type: NutrientsSchema
     },
-    uniqueId: {
-        type: String
-    },
-}, 
-{
-    timestamps:{createdAt:'createdAt'}
 },
+    {
+        timestamps: { createdAt: 'createdAt' }
+    },
 );
 
 module.exports = model('Item', ItemSchema);

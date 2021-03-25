@@ -16,9 +16,7 @@ const createUser = async (req, res) => {
         const newUser = new User({ ...req.body, password: hash });
         const { _id } = await newUser.save();
         const token = jwt.sign({ _id }, SECRET_KEY);
-        res.status(200).send({ user: newUser, token, currentProgress: null});
-        // const newUser = await User.create({ email: req.body.email, password: req.body.password });
-        // res.status(200).send({ newUser });
+        res.status(200).send({ user: newUser, token, currentProgress: null });
     } catch (error) {
         res.status(500).send({ error, message: `Could not create user because ${error}` });
     }
@@ -26,7 +24,7 @@ const createUser = async (req, res) => {
 
 const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) res.status(400).send({ message: "User not found" });
+    if (!user) res.status(400).send({ message: 'User not found' });
     const today = new Date().toISOString().substring(0, 10);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
     try {
@@ -99,6 +97,5 @@ const getUserByEmail = async (req, res) => {
         res.status(500).send({ error, message: 'Could not find user by email' });
     }
 };
-
 
 module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById };

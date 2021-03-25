@@ -25,9 +25,9 @@ const UserSchema = new Schema({
         type: String,
     }
 },
-{
-    timestamps: { createdAt: 'createdAt' }
-}
+    {
+        timestamps: { createdAt: 'createdAt' }
+    }
 );
 
 module.exports = model('User', UserSchema);
