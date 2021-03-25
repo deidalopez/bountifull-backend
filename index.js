@@ -7,7 +7,7 @@ const app = express();
 const SERVER_PORT = process.env.SERVER_PORT || 3001;
 
 const corsConfig = {
-    origin: 'http://localhost:19000',
+    origin: 'http://localhost:19006',
     credentials: true,
 };
 // const corsConfig = {
