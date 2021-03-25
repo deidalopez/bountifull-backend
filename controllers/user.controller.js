@@ -16,7 +16,7 @@ const createUser = async (req, res) => {
         const newUser = new User({ ...req.body, password: hash });
         const { _id } = await newUser.save();
         const token = jwt.sign({ _id }, SECRET_KEY);
-        res.status(200).send({ user: newUser, token, currentProgress: null });
+        res.status(200).send({ user: newUser, token });
     } catch (error) {
         res.status(500).send({ error, message: `Could not create user because ${error}` });
     }
@@ -26,7 +26,10 @@ const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) res.status(400).send({ message: "User not found" });
     const today = new Date().toISOString().substring(0, 10);
+    console.log(today);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
+    if (!allItems) allItems = [];
+    console.log(allItems);
     try {
         const validatePass = await bcrypt.compare(req.body.password, user.password);
         if (!validatePass) res.status(400).send({ error, message: 'Incorrect username and/or password' });
