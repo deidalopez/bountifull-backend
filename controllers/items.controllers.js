@@ -4,7 +4,7 @@ const Item = require('../models/item.model');
 
 // no auth implemented yet
 const addItem = async (req, res) => {
-  const { itemName, user, servingQuantity, totalNutrients } = req.body;
+  const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
   // const { PROCNT, FIBTG, VITA_RAE, THIA, RIBF, NIA, VITB6A, VITB12, FOLDFE, VITC, CA, FE, MG, K, NA, ZN } = totalNutrients
   const dateToday = new Date().toISOString().substring(0, 10);
   try {
@@ -17,6 +17,7 @@ const addItem = async (req, res) => {
       dateCreated: dateToday,
       totalNutrients: totalNutrients
     })
+
     res.status(200).send(newItem);
     console.log(newItem);
   } catch (error) {
