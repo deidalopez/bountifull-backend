@@ -69,7 +69,10 @@ const ItemSchema = new Schema({
     },
     totalNutrients: {
         type: NutrientsSchema
-    }
+    },
+    uniqueId: {
+        type: String
+    },
 }, 
 {
     timestamps:{createdAt:"createdAt"}
