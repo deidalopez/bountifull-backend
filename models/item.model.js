@@ -58,6 +58,9 @@ const ItemSchema = new Schema({
     user: {
         type: String || Number // not quite sure yet
     },
+    uniqueId: {
+        type: String
+    },
     itemName: {
         type: String,
     },
