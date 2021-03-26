@@ -26,15 +26,12 @@ const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) res.status(400).send({ message: "User not found" });
     const today = new Date().toISOString().substring(0, 10);
-    console.log(today);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
     if (!allItems) allItems = [];
-    console.log(allItems);
     try {
         const validatePass = await bcrypt.compare(req.body.password, user.password);
         if (!validatePass) res.status(400).send({ error, message: 'Incorrect username and/or password' });
         const token = jwt.sign({ _id: user._id }, SECRET_KEY);
-        console.log(token);
         res.status(200).send({ user: user, token, currentProgress: allItems });
     } catch (error) {
         res.status(500).send({ error, message: 'Could not login' });
@@ -74,7 +71,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const updatedUser = await User.updateOne({ _id: req.params.id }, req.body, { new: true });
+        const updatedUser = await User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
         res.status(200).send(updatedUser);
     } catch (error) {
         res.status(500).send({ error, message: 'Could not update user' });
