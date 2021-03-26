@@ -1,6 +1,6 @@
 const Item = require('../models/item.model');
 // import moment from 'moment';
-const moment = require('moment')
+// const moment = require('moment')
 
 
 // no auth implemented yet
@@ -16,10 +16,6 @@ const addItem = async (req, res) => {
       user: user,
       servingQuantity: servingQuantity,
       dateCreated: dateToday,
-<<<<<<< HEAD
-      totalNutrients: totalNutrients
-    })
-=======
       totalNutrients: {
         protein: PROCNT.quantity,
         fiber: FIBTG.quantity,
@@ -40,7 +36,6 @@ const addItem = async (req, res) => {
       }
     });
 
->>>>>>> e5843b8f962756bc0d4f937ca6ef534f32f56e48
     res.status(200).send(newItem);
     console.log(newItem);
   } catch (error) {
