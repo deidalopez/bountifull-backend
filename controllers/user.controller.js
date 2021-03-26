@@ -16,7 +16,11 @@ const createUser = async (req, res) => {
         const newUser = new User({ ...req.body, password: hash });
         const { _id } = await newUser.save();
         const token = jwt.sign({ _id }, SECRET_KEY);
+<<<<<<< HEAD
         res.status(200).send({ user: newUser, token, currentProgress: null });
+=======
+        res.status(200).send({ user: newUser, token });
+>>>>>>> 4d7523ef29e2a5b6eb6c838e4e03b044e4105480
     } catch (error) {
         res.status(500).send({ error, message: `Could not create user because ${error}` });
     }
@@ -27,11 +31,11 @@ const login = async (req, res) => {
     if (!user) res.status(400).send({ message: 'User not found' });
     const today = new Date().toISOString().substring(0, 10);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
+    if (!allItems) allItems = [];
     try {
         const validatePass = await bcrypt.compare(req.body.password, user.password);
         if (!validatePass) res.status(400).send({ error, message: 'Incorrect username and/or password' });
         const token = jwt.sign({ _id: user._id }, SECRET_KEY);
-        console.log(token);
         res.status(200).send({ user: user, token, currentProgress: allItems });
     } catch (error) {
         res.status(500).send({ error, message: 'Could not login' });
@@ -71,7 +75,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const updatedUser = await User.updateOne({ _id: req.params.id }, req.body, { new: true });
+        const updatedUser = await User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
         res.status(200).send(updatedUser);
     } catch (error) {
         res.status(500).send({ error, message: 'Could not update user' });

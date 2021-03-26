@@ -1,4 +1,6 @@
 const Item = require('../models/item.model');
+// import moment from 'moment';
+// const moment = require('moment')
 
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
@@ -11,7 +13,24 @@ const addItem = async (req, res) => {
       user: user,
       servingQuantity: servingQuantity,
       dateCreated: dateToday,
-      totalNutrients: totalNutrients
+      totalNutrients: {
+        protein: PROCNT.quantity,
+        fiber: FIBTG.quantity,
+        vitaminA: VITA_RAE.quantity,
+        thiamin: THIA.quantity,
+        riboflavin: RIBF.quantity,
+        niacin: NIA.quantity,
+        vitaminB6: VITB6A.quantity,
+        vitaminB12: VITB12.quantity,
+        folate: FOLDFE.quantity,
+        vitaminC: VITC.quantity,
+        calcium: CA.quantity,
+        iron: FE.quantity,
+        magnesium: MG.quantity,
+        potassium: K.quantity,
+        sodium: NA.quantity,
+        zinc: ZN.quantity
+      }
     });
 
     res.status(200).send(newItem);
