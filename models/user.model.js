@@ -1,13 +1,5 @@
 const { Schema, model } = require('.');
 
-const DaySchema = new Schema({
-    date: {
-        type: Date
-    },
-    totalGoalMet: {
-        type: Number
-    }
-});
 
 const UserSchema = new Schema({
     email: {
@@ -33,9 +25,16 @@ const UserSchema = new Schema({
     dietChoice: {
         type: String,
     },
-    days: {
-        type: DaySchema,
-    }
+    days: [
+        {
+            date: {
+                type: String,
+            },
+            totalGoalMet: {
+                type: Number
+            }
+        }
+    ],
 },
     {
         timestamps: { createdAt: 'createdAt' }
