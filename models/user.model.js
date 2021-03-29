@@ -1,5 +1,14 @@
 const { Schema, model } = require('.');
 
+const DaySchema = new Schema({
+    date: {
+        type: Date
+    },
+    totalNeedsMet: {
+        type: Number
+    }
+});
+
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -23,11 +32,14 @@ const UserSchema = new Schema({
     },
     dietChoice: {
         type: String,
+    },
+    days: {
+        type: DaySchema,
     }
 },
-{
-    timestamps: { createdAt: 'createdAt' }
-}
+    {
+        timestamps: { createdAt: 'createdAt' }
+    }
 );
 
 module.exports = model('User', UserSchema);

@@ -10,10 +10,6 @@ const corsConfig = {
     origin: 'http://localhost:19006',
     credentials: true,
 };
-// const corsConfig = {
-//     origin: 'http://localhost:3000',
-//     credentials: true,
-// };
 
 app.use(cors(corsConfig));
 app.use(express.json());
