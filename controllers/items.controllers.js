@@ -1,6 +1,7 @@
 const Item = require('../models/item.model');
+const User = require('./../models/user.model');
 const addItem = async (req, res) => {
-  const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
+  const { itemName, user, servingQuantity, totalNutrients, uniqueId, totalGoalMet  } = req.body;
   const dateToday = new Date().toISOString().substring(0, 10);
   try {
     console.log(itemName, user, servingQuantity, totalNutrients);
@@ -12,6 +13,24 @@ const addItem = async (req, res) => {
       dateCreated: dateToday,
       totalNutrients: totalNutrients
     });
+    const currentUser = await User.findOne({ _id: user});
+    const updatedGoalEntry = {
+      date: dateToday,
+      totalGoalMet: totalGoalMet
+    };
+
+    let index = currentUser.days.findIndex(entry => {
+      return entry.date === dateToday;
+    });
+
+    if (index === -1) {
+      currentUser.days.unshift(updatedGoalEntry);
+      await currentUser.save();
+    } else {
+      currentUser.days[index].totalGoalMet = totalGoalMet;
+      await currentUser.save();
+    }
+
     res.status(200).send(newItem);
     console.log(newItem);
   } catch (error) {
@@ -19,14 +38,33 @@ const addItem = async (req, res) => {
   }
 };
 const getItemsByUserAndDate = async (req, res) => {
-  const { user, createdAt } = req.body;
+  const user = req.params.id; 
+  const dateCreated =  req.params.date;
+
+  // const { user, dateCreated } = req.body;
+  console.log(user);
   try {
-    const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
+    const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+    console.log(dateCreated);
+    console.log(foundItems);
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
   }
 };
+// const getItemsByUserAndDate = async (req, res) => {
+//   const { user, dateCreated } = req.body;
+//   console.log('user ', user);
+//   try {
+//     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+//     console.log(dateCreated)
+//     // console.log(foundItems)
+//     res.status(200).send(foundItems);
+//   } catch (error) {
+//     res.status(400).send({ error: 400, message: error });
+//   }
+// };
+
 const deleteItemById = async (req, res) => {
   const { _id } = req.body;
   try {
