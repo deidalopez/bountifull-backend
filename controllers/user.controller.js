@@ -24,7 +24,7 @@ const createUser = async (req, res) => {
 
 const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) res.status(400).send({ message: "User not found" });
+    if (!user) res.status(400).send({ message: 'User not found' });
     const today = new Date().toISOString().substring(0, 10);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
     try {
@@ -96,6 +96,5 @@ const getUserByEmail = async (req, res) => {
         res.status(500).send({ error, message: 'Could not find user by email' });
     }
 };
-
 
 module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById };
