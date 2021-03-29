@@ -1,4 +1,7 @@
+const axios = require('axios');
 const Item = require('../models/item.model');
+const APIUrl = process.env.API_URL;
+const APIKey = process.env.API_KEY;
 
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
@@ -22,15 +25,13 @@ const addItem = async (req, res) => {
 };
 
 const getItemsByUserAndDate = async (req, res) => {
-  const user = req.params.id 
-  const dateCreated =  req.params.date 
+  const user = req.params.id;
+  const dateCreated =  req.params.date;
 
   // const { user, dateCreated } = req.body;
   console.log(user);
   try {
     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
-    console.log(dateCreated)
-    console.log(foundItems)
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
@@ -70,4 +71,50 @@ const updateById = async (req, res) => {
   }
 };
 
-module.exports = { addItem, getItemsByUserAndDate, deleteItemById, updateById };
+const search = async (req, res) => {
+  const { type, query } = req.body;
+  if (!type || !query) return res.status(400).json({error: 'Bad request: Please provide a valid request type and query!'});
+  try {
+    const { data } = await axios.get(`${APIUrl}/search?api_key=${APIKey}&query=${query}${ type !== 'all' ?
+      type === 'non' ?
+        '&dataType=Foundation,Survey,SR%20Legacy' : '&dataType=Branded'
+      : '' }`);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({error: err});
+  }
+};
+
+const getNutrition = async (req, res) => {
+  const { id } = req.params;
+  if (!id) return res.status(400).json({error: 'Bad request: Please provide id!'});
+  try {
+    const { data } = await axios.post(`${APIUrl}?api_key=${APIKey}`, {
+      fdcIds: [id],
+      format: 'abridged',
+      nutrients: [
+        203,
+        291,
+        318,
+        404,
+        405,
+        406,
+        415,
+        418,
+        417,
+        401,
+        301,
+        303,
+        304,
+        306,
+        307,
+        309
+      ]
+    });
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+module.exports = { getNutrition, search, addItem, getItemsByUserAndDate, deleteItemById, updateById };
