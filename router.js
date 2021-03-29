@@ -12,7 +12,8 @@ router.put('/update/:id', authMiddleware, userController.updateUser);
 router.get('/user/:id', userController.getUserById);
 router.get('/getUserByEmail', userController.getUserByEmail);
 router.get('/getAllUsers', userController.getAllUsers);
-
+router.post('/search', authMiddleware, itemsController.search);
+router.get('/nutrition/:id', authMiddleware, itemsController.getNutrition);
 router.post('/addItem', authMiddleware, itemsController.addItem);
 router.get('/getItems/:id/:date', itemsController.getItemsByUserAndDate);
 // router.get('/getItems', authMiddleware, itemsController.getItemsByUserAndDate);
