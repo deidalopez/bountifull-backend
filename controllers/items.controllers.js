@@ -37,23 +37,13 @@ const getItemsByUserAndDate = async (req, res) => {
   }
 };
 
-// const getItemsByUserAndDate = async (req, res) => {
-//   const { user, dateCreated } = req.body;
-//   console.log('user ', user);
-//   try {
-//     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
-//     console.log(dateCreated)
-//     // console.log(foundItems)
-//     res.status(200).send(foundItems);
-//   } catch (error) {
-//     res.status(400).send({ error: 400, message: error });
-//   }
-// };
-
 const deleteItemById = async (req, res) => {
-  const { _id } = req.body;
+  console.log('delete ')
+    const uniqueId = req.params.id 
+  // const { _id } = req.body;
+  console.log(uniqueId)
   try {
-    const deletedItem = await Item.findByIdAndRemove(_id);
+    const deletedItem = await Item.findOneAndDelete({ uniqueId: uniqueId });
     res.status(200).send(deletedItem);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
