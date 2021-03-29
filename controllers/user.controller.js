@@ -27,7 +27,6 @@ const login = async (req, res) => {
     if (!user) res.status(400).send({ message: "User not found" });
     const today = new Date().toISOString().substring(0, 10);
     const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
-    if (!allItems) allItems = [];
     try {
         const validatePass = await bcrypt.compare(req.body.password, user.password);
         if (!validatePass) res.status(400).send({ error, message: 'Incorrect username and/or password' });
