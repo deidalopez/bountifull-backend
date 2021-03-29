@@ -16,11 +16,7 @@ const createUser = async (req, res) => {
         const newUser = new User({ ...req.body, password: hash });
         const { _id } = await newUser.save();
         const token = jwt.sign({ _id }, SECRET_KEY);
-<<<<<<< HEAD
-        res.status(200).send({ user: newUser, token, currentProgress: null });
-=======
         res.status(200).send({ user: newUser, token });
->>>>>>> 4d7523ef29e2a5b6eb6c838e4e03b044e4105480
     } catch (error) {
         res.status(500).send({ error, message: `Could not create user because ${error}` });
     }

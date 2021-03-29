@@ -1,6 +1,4 @@
 const Item = require('../models/item.model');
-// import moment from 'moment';
-// const moment = require('moment')
 
 const addItem = async (req, res) => {
   const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
@@ -13,24 +11,7 @@ const addItem = async (req, res) => {
       user: user,
       servingQuantity: servingQuantity,
       dateCreated: dateToday,
-      totalNutrients: {
-        protein: PROCNT.quantity,
-        fiber: FIBTG.quantity,
-        vitaminA: VITA_RAE.quantity,
-        thiamin: THIA.quantity,
-        riboflavin: RIBF.quantity,
-        niacin: NIA.quantity,
-        vitaminB6: VITB6A.quantity,
-        vitaminB12: VITB12.quantity,
-        folate: FOLDFE.quantity,
-        vitaminC: VITC.quantity,
-        calcium: CA.quantity,
-        iron: FE.quantity,
-        magnesium: MG.quantity,
-        potassium: K.quantity,
-        sodium: NA.quantity,
-        zinc: ZN.quantity
-      }
+      totalNutrients: totalNutrients
     });
 
     res.status(200).send(newItem);
@@ -41,14 +22,32 @@ const addItem = async (req, res) => {
 };
 
 const getItemsByUserAndDate = async (req, res) => {
-  const { user, createdAt } = req.body;
+  const user = req.params.id 
+  const dateCreated =  req.params.date 
+
+  // const { user, dateCreated } = req.body;
+  console.log(user);
   try {
-    const foundItems = await Item.find({ user: user, createdAt: createdAt }).exec();
+    const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+    console.log(dateCreated)
+    console.log(foundItems)
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
   }
 };
+// const getItemsByUserAndDate = async (req, res) => {
+//   const { user, dateCreated } = req.body;
+//   console.log('user ', user);
+//   try {
+//     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
+//     console.log(dateCreated)
+//     // console.log(foundItems)
+//     res.status(200).send(foundItems);
+//   } catch (error) {
+//     res.status(400).send({ error: 400, message: error });
+//   }
+// };
 
 const deleteItemById = async (req, res) => {
   const { _id } = req.body;
