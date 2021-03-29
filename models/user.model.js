@@ -4,7 +4,7 @@ const DaySchema = new Schema({
     date: {
         type: Date
     },
-    totalNeedsMet: {
+    totalGoalMet: {
         type: Number
     }
 });

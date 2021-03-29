@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Item = require('../models/item.model');
 const User = require('./../models/user.model');
-const { getItemsByUserAndDate } = require('./items.controllers');
+// const { getItemsByUserAndDate } = require('./items.controllers');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const createUser = async (req, res) => {

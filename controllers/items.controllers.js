@@ -36,6 +36,7 @@ const getItemsByUserAndDate = async (req, res) => {
     res.status(400).send({ error: 400, message: error });
   }
 };
+
 // const getItemsByUserAndDate = async (req, res) => {
 //   const { user, dateCreated } = req.body;
 //   console.log('user ', user);
