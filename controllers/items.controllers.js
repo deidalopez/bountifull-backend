@@ -1,4 +1,4 @@
- const axios = require('axios');
+const axios = require('axios');
 const Item = require('../models/item.model');
 const APIUrl = process.env.API_URL;
 const APIKey = process.env.API_KEY;
@@ -25,15 +25,13 @@ const addItem = async (req, res) => {
 };
 
 const getItemsByUserAndDate = async (req, res) => {
-  const user = req.params.id 
-  const dateCreated =  req.params.date 
+  const user = req.params.id;
+  const dateCreated =  req.params.date;
 
   // const { user, dateCreated } = req.body;
   console.log(user);
   try {
     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
-    console.log(dateCreated)
-    console.log(foundItems)
     res.status(200).send(foundItems);
   } catch (error) {
     res.status(400).send({ error: 400, message: error });
