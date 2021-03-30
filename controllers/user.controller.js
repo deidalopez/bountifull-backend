@@ -26,7 +26,7 @@ const login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) res.status(400).send({ message: 'User not found' });
     const today = new Date().toISOString().substring(0, 10);
-    const allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
+    let allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
     if (!allItems) allItems = [];
     try {
         const validatePass = await bcrypt.compare(req.body.password, user.password);
@@ -88,6 +88,17 @@ const getUserById = async (req, res) => {
     }
 };
 
+const getUserDays = async (req, res) => {
+    try {
+        const user = await User.findById({ _id: req.params.id });
+        const userDays = user.days;
+        console.log(userDays);
+        res.status(200).send(userDays);
+    } catch (error) {
+        res.status(500).send('Could not find by id');
+    }
+};
+
 const getUserByEmail = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -98,4 +109,4 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
-module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById };
+module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById, getUserDays};
