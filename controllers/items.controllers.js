@@ -1,11 +1,12 @@
+require('dotenv').config();
 const axios = require('axios');
 const Item = require('../models/item.model');
-
+const User = require('./../models/user.model');
 const APIUrl = process.env.API_URL;
 const APIKey = process.env.API_KEY;
 
 const addItem = async (req, res) => {
-  const { itemName, user, servingQuantity, totalNutrients, uniqueId } = req.body;
+  const { itemName, user, servingQuantity, totalNutrients, uniqueId, totalGoalMet  } = req.body;
   const dateToday = new Date().toISOString().substring(0, 10);
   try {
     console.log(itemName, user, servingQuantity, totalNutrients);
@@ -17,6 +18,23 @@ const addItem = async (req, res) => {
       dateCreated: dateToday,
       totalNutrients: totalNutrients
     });
+    const currentUser = await User.findOne({ _id: user});
+    const updatedGoalEntry = {
+      date: dateToday,
+      totalGoalMet: totalGoalMet
+    };
+
+    let index = currentUser.days.findIndex(entry => {
+      return entry.date === dateToday;
+    });
+
+    if (index === -1) {
+      currentUser.days.unshift(updatedGoalEntry);
+      await currentUser.save();
+    } else {
+      currentUser.days[index].totalGoalMet = totalGoalMet;
+      await currentUser.save();
+    }
 
     res.status(200).send(newItem);
     console.log(newItem);
@@ -24,7 +42,6 @@ const addItem = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
-
 const getItemsByUserAndDate = async (req, res) => {
   const user = req.params.id;
   const dateCreated =  req.params.date;
@@ -51,7 +68,6 @@ const deleteItemById = async (req, res) => {
     res.status(400).send({ error: 400, message: error });
   }
 };
-
 // update serving size
 const updateById = async (req, res) => {
   const { _id, servingQuantity } = req.body;
