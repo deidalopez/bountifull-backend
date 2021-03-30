@@ -22,6 +22,11 @@ const createUser = async (req, res) => {
 };
 
 const login = async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) res.status(400).send({ message: 'User not found' });
+    const today = new Date().toISOString().substring(0, 10);
+    let allItems = await Item.find({ user: user._id, dateCreated: today }).exec();
+    if (!allItems) allItems = [];
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user) res.status(400).send({ message: 'User not found' });
@@ -75,17 +80,25 @@ const getUserById = async (req, res) => {
     }
 };
 
-// const getTotalGoalMet = async (req, res) => {
-//     // day _id
-//     // const {_id} = req.body
-//     const {_id} = req.body
-    
-//     try {
-//         const userInfo = User.findById({_id: _id})
-//         console.log(userInfo);
+const getUserDays = async (req, res) => {
+    try {
+        const user = await User.findById({ _id: req.params.id });
+        const userDays = user.days;
+        console.log(userDays);
+        res.status(200).send(userDays);
+    } catch (error) {
+        res.status(500).send('Could not find by id');
+    }
+};
 
-//         const dayInfo = User.findById({_id: _id})
-//     }
-// }
+const getUserByEmail = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.find({ email: email, password: password });
+        res.status(200).send(user);
+    } catch (error) {
+        res.status(500).send({ error, message: 'Could not find user by email' });
+    }
+};
 
-module.exports = { createUser, login, profile, deleteUser, updateUser, getUserById };
+module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById, getUserDays};
