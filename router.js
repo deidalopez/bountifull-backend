@@ -19,5 +19,6 @@ router.get('/getItems/:id/:date', itemsController.getItemsByUserAndDate);
 // router.get('/getItems', authMiddleware, itemsController.getItemsByUserAndDate);
 router.delete('/deleteItem', authMiddleware, itemsController.deleteItemById);
 router.put('/updateItem', authMiddleware, itemsController.updateById);
+router.get('/userdays/:id', authMiddleware, userController.getUserDays);
 
 module.exports = router;
