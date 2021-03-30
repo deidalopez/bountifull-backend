@@ -9,7 +9,8 @@ router.get('/profile', authMiddleware, userController.profile);
 router.delete('/deleteUser', authMiddleware, userController.deleteUser);
 router.put('/update/:id', authMiddleware, userController.updateUser);
 
-router.get('/user/:id', userController.getUserById);
+router.get('/user/:id', authMiddleware, userController.getUserById);
+// router.get('/user/:id', userController.getUserById);
 router.get('/getUserByEmail', userController.getUserByEmail);
 router.get('/getAllUsers', userController.getAllUsers);
 router.post('/search', authMiddleware, itemsController.search);

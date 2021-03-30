@@ -42,11 +42,10 @@ const addItem = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
+
 const getItemsByUserAndDate = async (req, res) => {
   const user = req.params.id;
   const dateCreated =  req.params.date;
-
-  // const { user, dateCreated } = req.body;
   console.log(user);
   try {
     const foundItems = await Item.find({ user: user, dateCreated: dateCreated }).exec();
@@ -59,7 +58,6 @@ const getItemsByUserAndDate = async (req, res) => {
 const deleteItemById = async (req, res) => {
   console.log('delete ')
     const uniqueId = req.params.id 
-  // const { _id } = req.body;
   console.log(uniqueId)
   try {
     const deletedItem = await Item.findOneAndDelete({ uniqueId: uniqueId });
@@ -68,7 +66,7 @@ const deleteItemById = async (req, res) => {
     res.status(400).send({ error: 400, message: error });
   }
 };
-// update serving size
+
 const updateById = async (req, res) => {
   const { _id, servingQuantity } = req.body;
   try {
