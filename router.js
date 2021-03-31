@@ -8,16 +8,13 @@ router.post('/login', userController.login);
 router.get('/profile', authMiddleware, userController.profile);
 router.delete('/deleteUser', authMiddleware, userController.deleteUser);
 router.put('/update/:id', authMiddleware, userController.updateUser);
+router.get('/user/:id', authMiddleware, userController.getUserById);
 
-router.get('/user/:id', userController.getUserById);
-router.get('/getUserByEmail', userController.getUserByEmail);
-router.get('/getAllUsers', userController.getAllUsers);
 router.post('/search', authMiddleware, itemsController.search);
 router.get('/nutrition/:id', authMiddleware, itemsController.getNutrition);
 router.post('/addItem', authMiddleware, itemsController.addItem);
-router.get('/getItems/:id/:date', itemsController.getItemsByUserAndDate);
-// router.get('/getItems', authMiddleware, itemsController.getItemsByUserAndDate);
-router.delete('/deleteItem', authMiddleware, itemsController.deleteItemById);
+router.get('/getItems/:id/:date', authMiddleware, itemsController.getItemsByUserAndDate);
+router.delete('/deleteItem/:id', authMiddleware, itemsController.deleteItemById);
 router.put('/updateItem', authMiddleware, itemsController.updateById);
 router.get('/userdays/:id', authMiddleware, userController.getUserDays);
 
