@@ -4,7 +4,7 @@ const cors = require('cors');
 const router = require('./router');
 const app = express();
 
-const SERVER_PORT = process.env.SERVER_PORT;
+const PORT = process.env.PORT || 3001;
 
 const corsConfig = {
     origin: 'http://localhost:19006',
@@ -20,4 +20,4 @@ app.use(router);
 //     res.send('<h1>WELCOME TO THE SERVER</h1>')
 // })
 
-app.listen(SERVER_PORT, () => console.log(`Server is running on http://localhost:${SERVER_PORT}`));
+app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
