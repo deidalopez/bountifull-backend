@@ -82,6 +82,7 @@ const getUserById = async (req, res) => {
 
 const getUserDays = async (req, res) => {
     try {
+        console.log('userdays')
         const user = await User.findById({ _id: req.params.id });
         const userDays = user.days;
         console.log(userDays);
@@ -101,4 +102,4 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
-module.exports = { createUser, login, profile, getAllUsers, deleteUser, getUserByEmail, updateUser, getUserById, getUserDays};
+module.exports = { createUser, login, profile, deleteUser, getUserByEmail, updateUser, getUserById, getUserDays};
