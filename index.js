@@ -15,9 +15,4 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 
-
-// app.get('/', (req, res) => {
-//     res.send('<h1>WELCOME TO THE SERVER</h1>')
-// })
-
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
