@@ -4,7 +4,7 @@ const cors = require('cors');
 const router = require('./router');
 const app = express();
 
-const SERVER_PORT = process.env.SERVER_PORT || 3001;
+const SERVER_PORT = process.env.SERVER_PORT;
 
 const corsConfig = {
     origin: 'http://localhost:19006',
