@@ -1,5 +1,8 @@
-# Bountifull
+# Bountifull (Backend)
 Bountifull is a non-restrictive nutrition tracker built for mobile.
+
+### For frontend directions, please visit 
+https://github.com/maywoollcott/bountifull-client
 
 ## Getting Started
 - Fork this repository and clone it to your local machine
