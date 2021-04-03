@@ -23,3 +23,9 @@ npm install -D nodemon
 ### The Bountifull backend is built using: 
 - Node.js and Express
 - MongoDB with Mongoose for the database
+
+## Contributors
+- Chase Klaus 
+- Chris Gomez
+- Deida Lopez
+- May Woollcott
