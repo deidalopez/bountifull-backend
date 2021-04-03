@@ -1,0 +1,296 @@
+
+{
+  "M1":{
+    "protein": {
+      "quantity": 55.5,
+      "units": "g"
+      
+    },
+    "fluids": {
+      "quantity": 2,
+      "units": "L"
+    },
+    "fiber": {
+      "quantity": 38,
+      "units": "g"
+      
+    },
+    "vitaminA": {
+      "quantity": 700,
+      "units": "ug"
+      
+    },
+    "thiamin": {
+      "quantity": 1,
+      "units": "mg"
+    },
+    "riboflavin": {
+      "quantity": 1.3,
+      "units": "mg"
+    },
+    "niacin": {
+      "quantity": 16.5,
+      "units": "mg"
+    },
+    "vitaminB6": {
+      "quantity": 1.4,
+      "units": "mg"
+    },
+    "vitaminB12": {
+      "quantity": 1.5,
+      "units": "ug"
+    },
+    "folate": {
+      "quantity": 200,
+      "units": "mg"
+    },
+    "vitaminC": {
+      "quantity": 40,
+      "units": "mg"
+    },
+    "calcium": {
+      "quantity": 700,
+      "units": "mg"
+    },
+    "iron": {
+      "quantity": 8.7,
+      "units": "mg"
+    },
+    "magnesium": {
+      "quantity": 300,
+      "units": "mg"
+    },
+    "potassium": {
+      "quantity": 3500,
+      "units": "mg"
+    },
+    "sodium": {
+      "quantity": 2.4,
+      "units": "mg"
+    },
+    "zinc": {
+      "quantity": 9.5,
+      "units": "mg"
+    }
+  },
+  "M2":{
+    "protein": {
+      "quantity": 53.3,
+      "units": "g"
+      
+    },
+    "fluids": {
+      "quantity": 2,
+      "units": "L"
+    },
+    "fiber": {
+      "quantity": 30,
+      "units": "g"
+      
+    },
+    "vitaminA": {
+      "quantity": 700,
+      "units": "ug"
+      
+    },
+    "thiamin": {
+      "quantity": 0.9,
+      "units": "mg"
+    },
+    "riboflavin": {
+      "quantity": 1.3,
+      "units": "mg"
+    },
+    "niacin": {
+      "quantity": 15.5,
+      "units": "mg"
+    },
+    "vitaminB6": {
+      "quantity": 1.4,
+      "units": "mg"
+    },
+    "vitaminB12": {
+      "quantity": 1.5,
+      "units": "ug"
+    },
+    "folate": {
+      "quantity": 200,
+      "units": "mg"
+    },
+    "vitaminC": {
+      "quantity": 40,
+      "units": "mg"
+    },
+    "calcium": {
+      "quantity": 700,
+      "units": "mg"
+    },
+    "iron": {
+      "quantity": 8.7,
+      "units": "mg"
+    },
+    "magnesium": {
+      "quantity": 300,
+      "units": "mg"
+    },
+    "potassium": {
+      "quantity": 3500,
+      "units": "mg"
+    },
+    "sodium": {
+      "quantity": 2.4,
+      "units": "mg"
+    },
+    "zinc": {
+      "quantity": 9.5,
+      "units": "mg"
+    }
+  },
+  "F1":{
+    "protein": {
+      "quantity": 45,
+      "units": "g"
+      
+    },
+    "fluids": {
+      "quantity": 2,
+      "units": "L"
+    },
+    "fiber": {
+      "quantity": 25,
+      "units": "g"
+      
+    },
+    "vitaminA": {
+      "quantity": 600,
+      "units": "ug"
+      
+    },
+    "thiamin": {
+      "quantity": 0.8,
+      "units": "mg"
+    },
+    "riboflavin": {
+      "quantity": 1.1,
+      "units": "mg"
+    },
+    "niacin": {
+      "quantity": 13.2,
+      "units": "mg"
+    },
+    "vitaminB6": {
+      "quantity": 1.2,
+      "units": "mg"
+    },
+    "vitaminB12": {
+      "quantity": 1.5,
+      "units": "ug"
+    },
+    "folate": {
+      "quantity": 200,
+      "units": "mg"
+    },
+    "vitaminC": {
+      "quantity": 40,
+      "units": "mg"
+    },
+    "calcium": {
+      "quantity": 700,
+      "units": "mg"
+    },
+    "iron": {
+      "quantity": 14.8,
+      "units": "mg"
+    },
+    "magnesium": {
+      "quantity": 270,
+      "units": "mg"
+    },
+    "potassium": {
+      "quantity": 3500,
+      "units": "mg"
+    },
+    "sodium": {
+      "quantity": 2.4,
+      "units": "mg"
+    },
+    "zinc": {
+      "quantity": 7,
+      "units": "mg"
+    }
+  },
+  "F2":{
+    "protein": {
+      "quantity": 46.5,
+      "units": "g"
+      
+    },
+    "fluids": {
+      "quantity": 2,
+      "units": "L"
+    },
+    "fiber": {
+      "quantity": 21,
+      "units": "g"
+      
+    },
+    "vitaminA": {
+      "quantity": 600,
+      "units": "ug"
+      
+    },
+    "thiamin": {
+      "quantity": 0.8,
+      "units": "mg"
+    },
+    "riboflavin": {
+      "quantity": 1.1,
+      "units": "mg"
+    },
+    "niacin": {
+      "quantity": 13.2,
+      "units": "mg"
+    },
+    "vitaminB6": {
+      "quantity": 1.2,
+      "units": "mg"
+    },
+    "vitaminB12": {
+      "quantity": 1.5,
+      "units": "ug"
+    },
+    "folate": {
+      "quantity": 200,
+      "units": "mg"
+    },
+    "vitaminC": {
+      "quantity": 40,
+      "units": "mg"
+    },
+    "calcium": {
+      "quantity": 700,
+      "units": "mg"
+    },
+    "iron": {
+      "quantity": 8.7,
+      "units": "mg"
+    },
+    "magnesium": {
+      "quantity": 270,
+      "units": "mg"
+    },
+    "potassium": {
+      "quantity": 3500,
+      "units": "mg"
+    },
+    "sodium": {
+      "quantity": 2.4,
+      "units": "mg"
+    },
+    "zinc": {
+      "quantity": 7,
+      "units": "mg"
+    }
+  }
+  
+}
