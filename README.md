@@ -25,7 +25,7 @@ npm install -D nodemon
 - MongoDB with Mongoose for the database
 
 ## Contributors
-- Chase Klaus 
-- Chris Gomez
-- Deida Lopez
-- May Woollcott
+- Chase Klaus (chase-klaus)
+- Chris Gomez (ChrGmz)
+- Deida Lopez (deidalopez)
+- May Woollcott (maywoollcott)
